@@ -1,11 +1,12 @@
-/* global AutoForm, $ */
+/* global AutoForm, $, _, moment */
 
 AutoForm.addInputType('bootstrap-datepicker', {
   template: 'afBootstrapDatepicker',
   valueOut: function () {
     var val;
     if (this.val()) {
-      val = this.datepicker('getUTCDate');
+      // val = this.datepicker('getUTCDate');
+      val = moment.utc(this.val(), 'DD/MM/YYYY').toDate()
     }
     return (val instanceof Date) ? val : this.val();
   },
